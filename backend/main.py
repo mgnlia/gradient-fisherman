@@ -11,6 +11,7 @@ import uuid
 from typing import Any
 
 import pandas as pd
+from cachetools import TTLCache
 from dotenv import load_dotenv
 from fastapi import FastAPI, File, HTTPException, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
@@ -49,10 +50,12 @@ app.add_middleware(
 ingest_agent = IngestAgent()
 viz_agent    = VizAgent()
 
-# ── In-memory session store ────────────────────────────────────────────────── #
-# session_id → { "profile": dict, "df": pd.DataFrame }
+# ── Session store: TTLCache (max 50 sessions, 30-min TTL) ─────────────────── #
+# Caps memory at 50 concurrent sessions; each auto-expires after 30 minutes.
+# Sessions are in-process only — lost on restart (acceptable for demo).
+# For production: replace with Redis or a persistent store.
 
-sessions: dict[str, dict[str, Any]] = {}
+sessions: TTLCache = TTLCache(maxsize=50, ttl=1800)  # 1800 s = 30 min
 
 # ── Helpers ────────────────────────────────────────────────────────────────── #
 
@@ -115,6 +118,8 @@ async def upload_csv(file: UploadFile = File(...)):
         raise HTTPException(400, "Only CSV files are supported.")
 
     contents = await file.read()
+    if len(contents) == 0:
+        raise HTTPException(400, "File is empty.")
     if len(contents) > 50 * 1024 * 1024:
         raise HTTPException(413, "File too large (max 50 MB).")
 
