@@ -1,0 +1,51 @@
+Order ID,Order Date,Customer Name,Customer Email,Product,Category,SKU,Quantity,Unit Price,Total Revenue,Discount,Net Revenue,Fulfillment Status,Country
+1001,2024-01-03,Alice Johnson,alice@example.com,Handmade Candle Set,Home Decor,HDC-001,2,24.99,49.98,0,49.98,Fulfilled,US
+1002,2024-01-05,Bob Smith,bob@example.com,Organic Coffee Beans 1kg,Food & Beverage,OCB-001,1,18.99,18.99,0,18.99,Fulfilled,CA
+1003,2024-01-07,Carol White,carol@example.com,Leather Wallet,Accessories,LW-001,1,45.00,45.00,5,40.00,Fulfilled,US
+1004,2024-01-09,David Brown,david@example.com,Yoga Mat Premium,Sports,YMP-001,1,65.00,65.00,0,65.00,Fulfilled,UK
+1005,2024-01-10,Emma Davis,emma@example.com,Handmade Candle Set,Home Decor,HDC-001,3,24.99,74.97,10,64.97,Fulfilled,US
+1006,2024-01-12,Frank Miller,frank@example.com,Bamboo Cutting Board,Kitchen,BCB-001,2,32.00,64.00,0,64.00,Fulfilled,US
+1007,2024-01-14,Grace Wilson,grace@example.com,Organic Coffee Beans 1kg,Food & Beverage,OCB-001,3,18.99,56.97,0,56.97,Fulfilled,AU
+1008,2024-01-15,Henry Moore,henry@example.com,Ceramic Mug Set,Kitchen,CMS-001,1,28.00,28.00,0,28.00,Fulfilled,US
+1009,2024-01-18,Iris Taylor,iris@example.com,Leather Wallet,Accessories,LW-001,2,45.00,90.00,15,75.00,Fulfilled,CA
+1010,2024-01-20,Jack Anderson,jack@example.com,Yoga Mat Premium,Sports,YMP-001,2,65.00,130.00,20,110.00,Fulfilled,US
+1011,2024-01-22,Kate Thomas,kate@example.com,Essential Oil Diffuser,Home Decor,EOD-001,1,42.00,42.00,0,42.00,Fulfilled,US
+1012,2024-01-24,Liam Jackson,liam@example.com,Bamboo Cutting Board,Kitchen,BCB-001,1,32.00,32.00,0,32.00,Fulfilled,UK
+1013,2024-01-26,Mia White,mia@example.com,Handmade Candle Set,Home Decor,HDC-001,1,24.99,24.99,0,24.99,Fulfilled,US
+1014,2024-01-28,Noah Harris,noah@example.com,Organic Coffee Beans 1kg,Food & Beverage,OCB-001,2,18.99,37.98,5,32.98,Fulfilled,US
+1015,2024-01-30,Olivia Martin,olivia@example.com,Ceramic Mug Set,Kitchen,CMS-001,4,28.00,112.00,20,92.00,Fulfilled,AU
+1016,2024-02-01,Peter Garcia,peter@example.com,Leather Wallet,Accessories,LW-001,1,45.00,45.00,0,45.00,Fulfilled,US
+1017,2024-02-03,Quinn Martinez,quinn@example.com,Yoga Mat Premium,Sports,YMP-001,1,65.00,65.00,0,65.00,Fulfilled,CA
+1018,2024-02-05,Rachel Robinson,rachel@example.com,Essential Oil Diffuser,Home Decor,EOD-001,2,42.00,84.00,10,74.00,Fulfilled,US
+1019,2024-02-07,Samuel Clark,samuel@example.com,Bamboo Cutting Board,Kitchen,BCB-001,3,32.00,96.00,15,81.00,Fulfilled,US
+1020,2024-02-09,Tina Lewis,tina@example.com,Handmade Candle Set,Home Decor,HDC-001,2,24.99,49.98,0,49.98,Fulfilled,UK
+1021,2024-02-11,Uma Lee,uma@example.com,Organic Coffee Beans 1kg,Food & Beverage,OCB-001,4,18.99,75.96,10,65.96,Fulfilled,US
+1022,2024-02-13,Victor Walker,victor@example.com,Ceramic Mug Set,Kitchen,CMS-001,2,28.00,56.00,0,56.00,Fulfilled,US
+1023,2024-02-15,Wendy Hall,wendy@example.com,Leather Wallet,Accessories,LW-001,3,45.00,135.00,25,110.00,Fulfilled,AU
+1024,2024-02-17,Xander Allen,xander@example.com,Yoga Mat Premium,Sports,YMP-001,1,65.00,65.00,0,65.00,Fulfilled,US
+1025,2024-02-19,Yara Young,yara@example.com,Essential Oil Diffuser,Home Decor,EOD-001,1,42.00,42.00,0,42.00,Fulfilled,CA
+1026,2024-02-21,Zoe Hernandez,zoe@example.com,Bamboo Cutting Board,Kitchen,BCB-001,2,32.00,64.00,5,59.00,Fulfilled,US
+1027,2024-02-23,Aaron King,aaron@example.com,Handmade Candle Set,Home Decor,HDC-001,4,24.99,99.96,20,79.96,Fulfilled,US
+1028,2024-02-25,Bella Wright,bella@example.com,Organic Coffee Beans 1kg,Food & Beverage,OCB-001,1,18.99,18.99,0,18.99,Fulfilled,UK
+1029,2024-02-27,Carlos Lopez,carlos@example.com,Ceramic Mug Set,Kitchen,CMS-001,3,28.00,84.00,10,74.00,Fulfilled,US
+1030,2024-02-29,Diana Hill,diana@example.com,Yoga Mat Premium,Sports,YMP-001,2,65.00,130.00,15,115.00,Fulfilled,US
+1031,2024-03-02,Ethan Scott,ethan@example.com,Leather Wallet,Accessories,LW-001,1,45.00,45.00,0,45.00,Fulfilled,CA
+1032,2024-03-04,Fiona Green,fiona@example.com,Essential Oil Diffuser,Home Decor,EOD-001,3,42.00,126.00,20,106.00,Fulfilled,US
+1033,2024-03-06,George Adams,george@example.com,Bamboo Cutting Board,Kitchen,BCB-001,1,32.00,32.00,0,32.00,Fulfilled,AU
+1034,2024-03-08,Hannah Baker,hannah@example.com,Handmade Candle Set,Home Decor,HDC-001,2,24.99,49.98,5,44.98,Fulfilled,US
+1035,2024-03-10,Ivan Carter,ivan@example.com,Organic Coffee Beans 1kg,Food & Beverage,OCB-001,5,18.99,94.95,15,79.95,Fulfilled,US
+1036,2024-03-12,Julia Mitchell,julia@example.com,Ceramic Mug Set,Kitchen,CMS-001,1,28.00,28.00,0,28.00,Fulfilled,UK
+1037,2024-03-14,Kevin Perez,kevin@example.com,Yoga Mat Premium,Sports,YMP-001,3,65.00,195.00,30,165.00,Fulfilled,US
+1038,2024-03-16,Laura Roberts,laura@example.com,Leather Wallet,Accessories,LW-001,2,45.00,90.00,10,80.00,Fulfilled,US
+1039,2024-03-18,Mark Turner,mark@example.com,Essential Oil Diffuser,Home Decor,EOD-001,1,42.00,42.00,0,42.00,Fulfilled,CA
+1040,2024-03-20,Nancy Phillips,nancy@example.com,Bamboo Cutting Board,Kitchen,BCB-001,4,32.00,128.00,20,108.00,Fulfilled,US
+1041,2024-03-22,Oscar Campbell,oscar@example.com,Handmade Candle Set,Home Decor,HDC-001,1,24.99,24.99,0,24.99,Fulfilled,AU
+1042,2024-03-24,Paula Evans,paula@example.com,Organic Coffee Beans 1kg,Food & Beverage,OCB-001,2,18.99,37.98,0,37.98,Fulfilled,US
+1043,2024-03-26,Quinn Edwards,quinn2@example.com,Ceramic Mug Set,Kitchen,CMS-001,5,28.00,140.00,25,115.00,Fulfilled,US
+1044,2024-03-28,Ryan Collins,ryan@example.com,Yoga Mat Premium,Sports,YMP-001,1,65.00,65.00,0,65.00,Fulfilled,UK
+1045,2024-03-30,Sara Stewart,sara@example.com,Leather Wallet,Accessories,LW-001,1,45.00,45.00,5,40.00,Fulfilled,US
+1046,2024-04-01,Tom Sanchez,tom@example.com,Essential Oil Diffuser,Home Decor,EOD-001,2,42.00,84.00,0,84.00,Fulfilled,US
+1047,2024-04-03,Uma Morris,uma2@example.com,Bamboo Cutting Board,Kitchen,BCB-001,3,32.00,96.00,10,86.00,Fulfilled,CA
+1048,2024-04-05,Vera Rogers,vera@example.com,Handmade Candle Set,Home Decor,HDC-001,3,24.99,74.97,15,59.97,Fulfilled,US
+1049,2024-04-07,Will Reed,will@example.com,Organic Coffee Beans 1kg,Food & Beverage,OCB-001,1,18.99,18.99,0,18.99,Fulfilled,US
+1050,2024-04-09,Xena Cook,xena@example.com,Ceramic Mug Set,Kitchen,CMS-001,2,28.00,56.00,0,56.00,Fulfilled,AU
