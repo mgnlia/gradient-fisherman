@@ -1,78 +1,111 @@
-"""Integration tests for FastAPI endpoints (no LLM calls)."""
-
+"""
+Smoke tests for the FastAPI application.
+Uses httpx AsyncClient — no real network, no LLM calls.
+"""
+import io
+import sys
+import os
 import pytest
-from fastapi.testclient import TestClient
-from main import app
+from httpx import AsyncClient, ASGITransport
+
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
+
+# Patch env before importing app so GRADIENT_API_KEY is set
+os.environ.setdefault("GRADIENT_API_KEY", "test-key-for-ci")
+
+from main import app  # noqa: E402
 
 
 @pytest.fixture
-def client():
-    return TestClient(app)
+async def client():
+    async with AsyncClient(
+        transport=ASGITransport(app=app), base_url="http://test"
+    ) as ac:
+        yield ac
 
 
-CSV_BYTES = (
-    b"product,category,units,revenue\n"
-    b"Widget A,Electronics,10,500.00\n"
-    b"Widget B,Clothing,5,150.00\n"
-    b"Gadget X,Electronics,2,1200.00\n"
-)
+# ── Health / root ─────────────────────────────────────────────────────────── #
 
-
-def test_root(client):
-    r = client.get("/")
-    assert r.status_code == 200
-    data = r.json()
-    assert data["service"] == "Gradient Fisherman API"
-
-
-def test_health(client):
-    r = client.get("/health")
+async def test_health(client):
+    r = await client.get("/health")
     assert r.status_code == 200
     assert r.json()["ok"] is True
 
 
-def test_upload_csv(client):
-    r = client.post(
+async def test_root(client):
+    r = await client.get("/")
+    assert r.status_code == 200
+    data = r.json()
+    assert "service" in data
+    assert data["platform"] == "DigitalOcean Gradient™ AI"
+
+
+# ── Upload ────────────────────────────────────────────────────────────────── #
+
+CSV_BYTES = b"product,units,revenue\nWidget,10,1000\nGadget,5,2000\nDoohickey,20,500\n"
+
+
+async def test_upload_csv_success(client):
+    r = await client.post(
         "/upload",
-        files={"file": ("sales.csv", CSV_BYTES, "text/csv")},
+        files={"file": ("sales.csv", io.BytesIO(CSV_BYTES), "text/csv")},
     )
     assert r.status_code == 200
     data = r.json()
-    assert data["row_count"] == 3
-    assert data["col_count"] == 4
     assert "session_id" in data
-    assert len(data["columns"]) == 4
+    assert data["row_count"] == 3
+    assert data["col_count"] == 3
+    assert data["filename"] == "sales.csv"
 
 
-def test_upload_non_csv(client):
-    r = client.post(
+async def test_upload_non_csv_rejected(client):
+    r = await client.post(
         "/upload",
-        files={"file": ("data.xlsx", b"fake", "application/octet-stream")},
+        files={"file": ("data.xlsx", io.BytesIO(b"fake"), "application/octet-stream")},
     )
     assert r.status_code == 400
 
 
-def test_query_no_session(client):
-    r = client.post(
+async def test_upload_empty_file_rejected(client):
+    r = await client.post(
+        "/upload",
+        files={"file": ("empty.csv", io.BytesIO(b""), "text/csv")},
+    )
+    assert r.status_code == 400
+
+
+# ── Session management ────────────────────────────────────────────────────── #
+
+async def test_query_unknown_session_404(client):
+    r = await client.post(
         "/query",
-        json={"session_id": "nonexistent-id", "question": "How many rows?"},
+        json={"session_id": "nonexistent-session-id", "question": "What is the total revenue?"},
     )
     assert r.status_code == 404
 
 
-def test_delete_session(client):
-    # upload first
-    r = client.post(
+async def test_delete_session(client):
+    # Upload first
+    r = await client.post(
         "/upload",
-        files={"file": ("s.csv", CSV_BYTES, "text/csv")},
+        files={"file": ("sales.csv", io.BytesIO(CSV_BYTES), "text/csv")},
     )
     session_id = r.json()["session_id"]
-    # delete
-    r2 = client.delete(f"/session/{session_id}")
+
+    # Delete
+    r2 = await client.delete(f"/session/{session_id}")
     assert r2.status_code == 200
-    # now query should 404
-    r3 = client.post(
+    assert r2.json()["deleted"] == session_id
+
+    # Now query should 404
+    r3 = await client.post(
         "/query",
-        json={"session_id": session_id, "question": "anything"},
+        json={"session_id": session_id, "question": "How many rows?"},
     )
     assert r3.status_code == 404
+
+
+async def test_delete_nonexistent_session_ok(client):
+    """Deleting a non-existent session should not error."""
+    r = await client.delete("/session/does-not-exist")
+    assert r.status_code == 200
